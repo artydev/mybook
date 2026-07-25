@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Johnson - Profile & Blog</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-900 font-sans">
+
+    <!-- Profile Header (Cover & Avatar) -->
+    <div class="max-w-5xl mx-auto bg-white shadow rounded-b-lg overflow-hidden">
+        <div class="h-64 bg-gradient-to-r from-blue-500 to-indigo-600 relative">
+            <!-- Cover Photo Placeholder -->
+        </div>
+        <div class="px-6 pb-4 relative flex flex-col sm:flex-row items-center sm:items-end justify-between -mt-16 sm:-mt-10">
+            <div class="flex flex-col sm:flex-row items-center gap-4">
+                <div class="w-36 h-36 rounded-full border-4 border-white bg-gray-300 overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300" alt="Profile" class="w-full h-full object-cover">
+                </div>
+                <div class="text-center sm:text-left mb-2">
+                    <h1 class="text-2xl font-bold">Alex Johnson</h1>
+                    <p class="text-gray-600">Software Engineer & Tech Blogger</p>
+                </div>
+            </div>
+            <div class="flex gap-2 mt-4 sm:mt-0">
+                <button class="bg-blue-600 text-white px-4 py-2 rounded-md font-semibold text-sm hover:bg-blue-700">+ Add to story</button>
+                <button class="bg-gray-200 text-gray-800 px-4 py-2 rounded-md font-semibold text-sm hover:bg-gray-300">Edit profile</button>
+            </div>
+        </div>
+        <!-- Profile Navigation Tabs -->
+        <div class="flex border-t px-6 gap-8 text-gray-600 font-semibold text-sm">
+            <button class="py-3 border-b-4 border-blue-600 text-blue-600">Posts</button>
+            <button class="py-3 hover:text-gray-900">About</button>
+            <button class="py-3 hover:text-gray-900">Photos</button>
+        </div>
+    </div>
+
+    <!-- Main Content: Two-Column Layout -->
+    <main class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 px-2 sm:px-0">
+        
+        <!-- Left Sidebar (Intro Card) -->
+        <aside class="space-y-4">
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h2 class="font-bold text-lg mb-2">Intro</h2>
+                <p class="text-sm text-gray-600 text-center mb-4">Building clean web apps with .NET & Vanilla JS.</p>
+                <div class="space-y-2 text-sm text-gray-700">
+                    <p>📍 Lives in <strong>San Francisco, California</strong></p>
+                    <p>💼 Works at <strong>Self-Employed</strong></p>
+                    <p>🔗 <a href="#" class="text-blue-600 hover:underline">github.com/alexjohnson</a></p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Feed -->
+        <section class="md:col-span-2 space-y-4">
+            
+            <!-- Create Post Box -->
+            <div class="bg-white p-4 rounded-lg shadow">
+                <form id="post-form" class="flex gap-3">
+                    <input type="text" id="post-input" placeholder="What's on your mind, Alex?" 
+                           class="flex-1 bg-gray-100 px-4 py-2 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-full font-semibold text-sm hover:bg-blue-700">Post</button>
+                </form>
+            </div>
+
+            <!-- Dynamic Feed Container -->
+            <div id="feed-container">
+                <!-- Posts will be rendered here via JS Signals -->
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Frontend Script using ESM Preact Signals -->
+    <script type="module" src="/js/app.js"></script>
+</body>
+</html>
