@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "dgSpecHash": "hjYuFPcCSBI=",
+  "success": true,
+  "projectFilePath": "C:\\temp\\mybook\\mybook.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\sdidio-ccrf\\.nuget\\packages\\litedb\\5.0.21\\litedb.5.0.21.nupkg.sha512",
+    "C:\\Users\\sdidio-ccrf\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.8\\microsoft.aspnetcore.openapi.10.0.8.nupkg.sha512",
+    "C:\\Users\\sdidio-ccrf\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "message": "Le package 'Microsoft.OpenApi' 2.0.0 présente une vulnérabilité de gravité élevé(e) connue, https://github.com/advisories/GHSA-v5pm-xwqc-g5wc.",
+      "projectPath": "C:\\temp\\mybook\\mybook.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\temp\\mybook\\mybook.csproj",
+      "libraryId": "Microsoft.OpenApi",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
+}

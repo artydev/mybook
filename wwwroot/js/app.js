@@ -68,49 +68,70 @@ document.getElementById("post-form").addEventListener("submit", async (e) => {
     }
 });
 
+// Theme toggle functionality - FIXED VERSION
+document.addEventListener('DOMContentLoaded', function() {
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+        // Use addEventListener instead of onclick to avoid conflicts
+        themeToggle.addEventListener('click', function() {
+            // Toggle the dark class on html element
+            const htmlElement = document.documentElement;
+            if (htmlElement.classList.contains('dark')) {
+                htmlElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                htmlElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+            
+            console.log('Theme switched to:', htmlElement.classList.contains('dark') ? 'dark' : 'light');
+        });
+    }
+});
+
 // Render Feed reactive loop
 const feedContainer = document.getElementById("feed-container");
 postsSignal.subscribe(posts => {
     feedContainer.innerHTML = posts.map(post => `
-        <div class="bg-white rounded-lg shadow p-4 space-y-3">
+        <div class="bg-white rounded-lg shadow p-4 space-y-3 dark:bg-gray-800">
             <!-- Author Header -->
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-gray-300 overflow-hidden">
+                <div class="w-10 h-10 rounded-full bg-gray-300 overflow-hidden dark:bg-gray-600">
                     <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100" class="w-full h-full object-cover">
                 </div>
                 <div>
-                    <h3 class="font-bold text-sm">Alex Johnson</h3>
-                    <span class="text-xs text-gray-500">${new Date(post.createdAt).toLocaleDateString()}</span>
+                    <h3 class="font-bold text-sm dark:text-white">Alex Johnson</h3>
+                    <span class="text-xs text-gray-500 dark:text-gray-400">${new Date(post.createdAt).toLocaleDateString()}</span>
                 </div>
             </div>
 
             <!-- Post Content -->
-            <p class="text-gray-800 text-sm whitespace-pre-line">${post.content}</p>
+            <p class="text-gray-800 text-sm whitespace-pre-line dark:text-gray-300">${post.content}</p>
             
             <!-- Likes & Comments Count -->
-            <div class="flex justify-between items-center text-xs text-gray-500 border-t pt-2">
+            <div class="flex justify-between items-center text-xs text-gray-500 border-t pt-2 dark:border-gray-700 dark:text-gray-400">
                 <span>👍 ${post.likes} Likes</span>
                 <span>${post.comments.length} Comments</span>
             </div>
 
             <!-- Action Buttons -->
-            <div class="flex border-t pt-1">
-                <button onclick="handleLike(${post.id})" class="flex-1 py-1 text-center font-semibold text-gray-600 hover:bg-gray-100 rounded text-sm transition">
+            <div class="flex border-t pt-1 dark:border-gray-700">
+                <button onclick="handleLike(${post.id})" class="flex-1 py-1 text-center font-semibold text-gray-600 hover:bg-gray-100 rounded text-sm transition dark:text-gray-400 dark:hover:bg-gray-700">
                     Like
                 </button>
-                <button onclick="document.getElementById('comment-input-${post.id}').focus()" class="flex-1 py-1 text-center font-semibold text-gray-600 hover:bg-gray-100 rounded text-sm transition">
+                <button onclick="document.getElementById('comment-input-${post.id}').focus()" class="flex-1 py-1 text-center font-semibold text-gray-600 hover:bg-gray-100 rounded text-sm transition dark:text-gray-400 dark:hover:bg-gray-700">
                     Comment
                 </button>
             </div>
 
             <!-- Comments Section -->
-            <div class="border-t pt-3 space-y-2">
+            <div class="border-t pt-3 space-y-2 dark:border-gray-700">
                 <!-- List of Comments -->
                 <div class="space-y-2">
                     ${post.comments.map(c => `
-                        <div class="bg-gray-50 p-2 rounded-lg text-xs flex flex-col">
-                            <span class="font-bold text-gray-700">Alex Johnson</span>
-                            <span class="text-gray-800 mt-0.5">${c.text}</span>
+                        <div class="bg-gray-50 p-2 rounded-lg text-xs flex flex-col dark:bg-gray-700 dark:text-gray-300">
+                            <span class="font-bold text-gray-700 dark:text-white">Alex Johnson</span>
+                            <span class="text-gray-800 mt-0.5 dark:text-gray-300">${c.text}</span>
                         </div>
                     `).join('')}
                 </div>
@@ -118,8 +139,8 @@ postsSignal.subscribe(posts => {
                 <!-- Add Comment Form -->
                 <form onsubmit="handleAddComment(${post.id}, event)" class="flex gap-2 mt-2">
                     <input type="text" id="comment-input-${post.id}" placeholder="Write a comment..." 
-                           class="flex-1 bg-gray-100 px-3 py-1.5 rounded-full text-xs focus:outline-none focus:ring-1 focus:ring-blue-500">
-                    <button type="submit" class="bg-blue-600 text-white px-3 py-1.5 rounded-full text-xs font-semibold hover:bg-blue-700">Reply</button>
+                           class="flex-1 bg-gray-100 px-3 py-1.5 rounded-full text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400">
+                    <button type="submit" class="bg-blue-600 text-white px-3 py-1.5 rounded-full text-xs font-semibold hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600">Reply</button>
                 </form>
             </div>
         </div>
